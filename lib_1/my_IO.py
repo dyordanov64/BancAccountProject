@@ -1,9 +1,9 @@
 # функция за въвеждане на коректна стойност за число и подканващо съобщение за това
-def get_user_number(message : str,min : int,max : int)->int:
+def get_user_number(message : str, min : int, max : int)->int:
 	while True :
 		try:
 			x = int(input(f'{message} [{min}..{max}]: '))
-			if x > min and x <= max :
+			if x >= min and x <= max :
 				return x
 		except:
 			print('A correct value, please!!!')

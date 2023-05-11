@@ -43,12 +43,12 @@ def show_actions(line_width):
 
 while True :
 	show_actions(60)
-	choice = aux.get_user_number('Input your choice: ', 1 , 5)
+	choice = aux.get_user_number('Input your choice: ', 1, 5)
 	
 
-	if choice == 1 :
+	if choice== 1 :
 		aux.new_account(myd.account_list)
-		# print(myd.account_list)
+		print(myd.account_list)
 	elif choice == 2 :
 		aux.bank_transaction(myd.account_list, 'whithdraw')
 	elif choice == 3 :
@@ -60,4 +60,4 @@ while True :
 
 	sleep(5)
 	clear_screen()
-	
+	                                                                                                                                                                                                                                            
