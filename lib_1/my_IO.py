@@ -45,6 +45,7 @@ def new_account(acount_list) :
 def bank_transaction(acount_list, transaction) :
 	acount = acount_list[len(acount_list)-1] # взимане номера на последната сметка 
 	# за да се изведе коректна подсказка за въвеждане на правилен номер на банкова сметка
+	print(acount)
 
 	acount_num = get_user_limited_string('Input account nomber:', '0000000001', acount['account_nomber'])
 	for account in acount_list : # взимане на коректнатия запис "dictionary" от списъка
