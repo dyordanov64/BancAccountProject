@@ -64,7 +64,7 @@ def bank_transaction(acount_list, transaction) :
 	# get user account:
 	try:
 		account = get_user_account(acount_list)
-		print(account)
+		# print(account)
 	except NonExistentAccount as e:
 		print(e)
 		return
