@@ -1,35 +1,46 @@
 from lib_1.custom_exceptions import NonExistentAccount, InvalidPin
 from lib_1.my_IO import get_user_limited_string, get_user_number
 from lib_1.validation import validate_pin
+from lib_1.MyData import account_list
 
 class Bank_Account :
-	def __init__(self, account_nomber, full_name, pin_code, value_deposit):
-		self.account_nomber = account_nomber
-		self.full_name = full_name
-		self.pin_code = pin_code
-		self.value_deposit = value_deposit
+	def __init__(self):
+		self.new_account()
 
-# Функция за създаване на нов акаунт
-	def new_account(self, acount_list) :
+	# Функция за създаване на нов акаунт
+	def new_account(self) :
 		#
 		self.full_name = input('Enter your three names:')
 		self.pin_code = get_user_limited_string('Please input a PIN of your choice: ','0000', '9999')
 		self.value_deposit = get_user_number('Please input a value to deposit to start of account: ', 1 , 1000000000)
-		# изчисляване на 10 разреден номер на новата сметка -
-		# към броя на записите в Списъка добавяме 1 и запълваме с 0 до 10 разряда
-		self.account_nomber = str(len(acount_list)+1)
-		while len(self.account_nomber) < 10 :
-			self.account_nomber = '0' + self.account_nomber
+		self.account_nomber = ''
 
-			# Добавяме новия запис към текущия списък
-		acount_list.append(
+
+
+class Bank:
+	def __init__(self) -> None:
+		# get accounts from json file
+		self.accounts = account_list
+
+	def create_new_account(self):
+		account = Bank_Account()
+		# TODO: fix it, check tmp.py
+		account.account_nomber = '0000000034'
+
+		self.add_account(account)
+
+
+	def add_account(self, account):
+		# # Добавяме новия запис към текущия списък
+		self.accounts.append(
 			{
-			'account_nomber' : self.account_nomber,
-			'full_name' : self.full_name,
-			'pin_code' : self.pin_code,
-			'account_balance' : self.value_deposit
+				'account_nomber' : account.account_nomber,
+				'full_name' : account.full_name,
+				'pin_code' : account.pin_code,
+				'account_balance' : account.value_deposit
 			}
 		)
+
 
 def find_account(account_list, account_number):
 	for account in account_list:
