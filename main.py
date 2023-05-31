@@ -49,7 +49,7 @@ while True :
 	if choice == 1 :
 		BA=ba.Bank_Account('0','', '0000', 0)  # Трябва ли да се създава екземпляр на клас за да се извика процедурата new_account
 		BA.new_account(myd.account_list)
-		print(myd.account_list)
+		# print(myd.account_list)
 	elif choice == 2 :
 		ba.bank_transaction(myd.account_list, 'whithdraw')
 	elif choice == 3 :
@@ -58,7 +58,7 @@ while True :
 		ba.bank_transaction(myd.account_list, 'check')
 	else : quit()
 
-
-	sleep(5)
+	input('Press any key to continue: ')
+	#sleep(5)
 	clear_screen()
 	# print('test')
