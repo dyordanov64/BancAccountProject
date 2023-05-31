@@ -25,7 +25,11 @@ class Bank:
 	def create_new_account(self):
 		account = Bank_Account()
 		# TODO: fix it, check tmp.py
-		account.account_nomber = '0000000034'
+		x=int(self.accounts[-1][account_nomber]+1)
+		print(x)
+		exit
+
+		#account.account_nomber = str((len(self.accounts)+1):010)
 
 		self.add_account(account)
 
