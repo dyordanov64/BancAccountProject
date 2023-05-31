@@ -14,7 +14,8 @@
 import os
 from time import sleep
 import lib_1.my_IO as io
-import lib_1.banc_account as ba
+# import lib_1.banc_account as ba
+from lib_1.banc_account import Bank
 import lib_1.MyData as myd
 
 # define our clear function
@@ -42,14 +43,17 @@ def show_actions(line_width):
 
 
 
+bank = Bank()
+print(bank.accounts)
+
 while True :
 	show_actions(60)
 	choice = io.get_user_number('Input your choice: ', 1 , 5)
 	print(choice)
 	if choice == 1 :
-		BA=ba.Bank_Account('0','', '0000', 0)  # Трябва ли да се създава екземпляр на клас за да се извика процедурата new_account
-		BA.new_account(myd.account_list)
-		# print(myd.account_list)
+		bank.create_new_account()
+		print(bank.accounts)
+		exit()
 	elif choice == 2 :
 		ba.bank_transaction(myd.account_list, 'whithdraw')
 	elif choice == 3 :
