@@ -44,7 +44,7 @@ def show_actions(line_width):
 
 
 bank = Bank()
-print(bank.accounts)
+#print(bank.accounts)
 
 while True :
 	show_actions(60)
@@ -53,16 +53,16 @@ while True :
 	if choice == 1 :
 		bank.create_new_account()
 		print(bank.accounts)
-		exit()
+		#exit()
 	elif choice == 2 :
-		ba.bank_transaction(myd.account_list, 'whithdraw')
+		bank.bank_transaction(myd.account_list, 'whithdraw')
 	elif choice == 3 :
-		ba.bank_transaction(myd.account_list, 'deposit')
+		bank.bank_transaction(myd.account_list, 'deposit')
 	elif choice == 4 :
-		ba.bank_transaction(myd.account_list, 'check')
+		bank.bank_transaction(myd.account_list, 'check')
 	else : quit()
 
 	input('Press any key to continue: ')
 	#sleep(5)
-	clear_screen()
+	#clear_screen()
 	# print('test')
