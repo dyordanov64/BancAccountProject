@@ -44,7 +44,7 @@ def show_actions(line_width):
 
 
 bank = Bank()
-#print(bank.accounts)
+print(bank.accounts)
 
 while True :
 	show_actions(60)
@@ -60,7 +60,9 @@ while True :
 		bank.bank_transaction(myd.account_list, 'deposit')
 	elif choice == 4 :
 		bank.bank_transaction(myd.account_list, 'check')
-	else : quit()
+	else : 
+		bank.accounts_to_json()
+		quit()
 
 	input('Press any key to continue: ')
 	#sleep(5)

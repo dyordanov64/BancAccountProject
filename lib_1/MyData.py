@@ -1,7 +1,7 @@
 account_list = [
     {
         'account_nomber' : '0000000001',
-        'full_name' : 'Даниел Йорданов',
+        'full_name' : 'Daniel Yordanov',
         'pin_code' : '6401',
         'account_balance' : 1000
     },
