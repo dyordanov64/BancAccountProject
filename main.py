@@ -52,14 +52,18 @@ while True :
 	print(choice)
 	if choice == 1 :
 		bank.create_new_account()
-		print(bank.accounts)
+		bank.accounts_to_json()
+		# print(bank.accounts)
+
 		#exit()
 	elif choice == 2 :
-		bank.bank_transaction(myd.account_list, 'whithdraw')
+		bank.bank_transaction('whithdraw')
+		bank.accounts_to_json()
 	elif choice == 3 :
-		bank.bank_transaction(myd.account_list, 'deposit')
+		bank.bank_transaction('deposit')
+		bank.accounts_to_json()
 	elif choice == 4 :
-		bank.bank_transaction(myd.account_list, 'check')
+		bank.bank_transaction('check')
 	else : 
 		bank.accounts_to_json()
 		quit()

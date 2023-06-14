@@ -67,15 +67,63 @@ class Bank:
 		# self.accounts = json.load(accounts_file)
 		pass
 
+	def get_user_account(self):
+		acount_max_num = self.accounts[-1]['account_nomber'] # взимане номера на последната сметка
+		print(acount_max_num)
+		# acount_max_num = acount_list[-1]['account_nomber'] # взимане номера на последната сметка
+		# за да се изведе коректна подсказка за въвеждане на правилен номер на банкова сметка
+		user_account_number = get_user_limited_string('Input account nomber:', '0000000001', acount_max_num)
 
+		account = find_account(self.accounts, user_account_number)
 
+		validate_pin(account)
 
-def find_account(account_list, account_number):
-	for account in account_list:
+		print(f'USER_ACCOUNT_NUMBER: {user_account_number}')
+
+		return account
+	
+		# изпълняване на транзакциите за теглене, внасяне и проверка на сметката на клиента
+	def bank_transaction( self, transaction) :
+		# get user account:
+		try:
+			account = self.get_user_account()
+			print(account)
+		except NonExistentAccount as e:
+			print(e)
+			return
+		except InvalidPin as e:
+			print(e)
+			return
+		except Exception as e:
+			print("Ups, something went wrong:", e)
+			return
+
+		# do transaction
+		if transaction == 'whithdraw' : # теглене
+			amount = get_user_number('Input whithdraw amount: ', 1, account['account_balance'])
+			account['account_balance'] -= amount
+		elif transaction == 'deposit' : # депозит
+			amount = get_user_number('Input deposit amount: ', 1, 1000000000)
+			account['account_balance'] += amount
+		else :  # и проверка на сметката
+			print(f"Account Name is {account['full_name']}")
+
+		print(f"Account balance is {account['account_balance']}")
+		
+def find_account(account_lists, account_number):
+	for account in account_lists:
 		if account['account_nomber'] == account_number:
 			return account
 
 	raise NonExistentAccount(account_number)
+
+
+# def find_account(account_list, account_number):
+# 	for account in account_list:
+# 		if account['account_nomber'] == account_number:
+# 			return account
+
+# 	raise NonExistentAccount(account_number)
 
 	# # get account dict from account_list, filtered by 'account_nomber'
 	# try:
@@ -85,45 +133,20 @@ def find_account(account_list, account_number):
 	# 	raise NonExistentAccount(account_number)
 
 
-def get_user_account(acount_list):
-	acount_max_num = acount_list[-1]['account_nomber'] # взимане номера на последната сметка
-	# за да се изведе коректна подсказка за въвеждане на правилен номер на банкова сметка
-	user_account_number = get_user_limited_string('Input account nomber:', '0000000001', acount_max_num)
+# def get_user_account(self):
+# 	acount_max_num = self.accounts[-1]['account_nomber'] # взимане номера на последната сметка
+# 	# acount_max_num = acount_list[-1]['account_nomber'] # взимане номера на последната сметка
+# 	# за да се изведе коректна подсказка за въвеждане на правилен номер на банкова сметка
+# 	user_account_number = get_user_limited_string('Input account nomber:', '0000000001', acount_max_num)
 
-	account = find_account(acount_list, user_account_number)
+# 	account = find_account(self.accounts, user_account_number)
 
-	validate_pin(account)
+# 	validate_pin(account)
 
-	print(f'USER_ACCOUNT_NUMBER: {user_account_number}')
+# 	print(f'USER_ACCOUNT_NUMBER: {user_account_number}')
 
-	return account
+# 	return account
 
-# изпълняване на транзакциите за теглене, внасяне и проверка на сметката на клиента
-def bank_transaction(acount_list, transaction) :
-	# get user account:
-	try:
-		account = get_user_account(acount_list)
-		# print(account)
-	except NonExistentAccount as e:
-		print(e)
-		return
-	except InvalidPin as e:
-		print(e)
-		return
-	except Exception as e:
-		print("Ups, something went wrong:", e)
-		return
 
-	# do transaction
-	if transaction == 'whithdraw' : # теглене
-		amount = get_user_number('Input whithdraw amount: ', 1, account['account_balance'])
-		account['account_balance'] -= amount
-	elif transaction == 'deposit' : # депозит
-		amount = get_user_number('Input deposit amount: ', 1, 1000000000)
-		account['account_balance'] += amount
-	else :  # и проверка на сметката
-		print(f"Account Name is {account['full_name']}")
-
-	print(f"Account balance is {account['account_balance']}")
 
 
