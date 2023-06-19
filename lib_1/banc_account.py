@@ -67,9 +67,10 @@ class Bank:
 		# self.accounts = json.load(accounts_file)
 		pass
 
+		# връща номера на последната сметка в базата
 	def get_user_account(self):
 		acount_max_num = self.accounts[-1]['account_nomber'] # взимане номера на последната сметка
-		print(acount_max_num)
+		# print(acount_max_num)
 		# acount_max_num = acount_list[-1]['account_nomber'] # взимане номера на последната сметка
 		# за да се изведе коректна подсказка за въвеждане на правилен номер на банкова сметка
 		user_account_number = get_user_limited_string('Input account nomber:', '0000000001', acount_max_num)
@@ -87,7 +88,7 @@ class Bank:
 		# get user account:
 		try:
 			account = self.get_user_account()
-			print(account)
+			# print(account)
 		except NonExistentAccount as e:
 			print(e)
 			return
