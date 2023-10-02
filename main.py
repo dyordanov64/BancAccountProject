@@ -45,6 +45,7 @@ def show_actions(line_width):
 
 bank = Bank()
 print(bank.accounts)
+bank.accounts_to_mongo_atlas()
 
 while True :
 	show_actions(60)

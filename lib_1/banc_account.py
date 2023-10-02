@@ -2,6 +2,7 @@ from lib_1.custom_exceptions import NonExistentAccount, InvalidPin
 from lib_1.my_IO import get_user_limited_string, get_user_number
 from lib_1.validation import validate_pin
 from lib_1.MyData import account_list
+from pymongo import MongoClient
 import json
 
 class Bank_Account :
@@ -26,7 +27,7 @@ class Bank_Account :
 
 		pass
 
-
+	
 
 class Bank:
 	def __init__(self) -> None:
@@ -34,6 +35,7 @@ class Bank:
 		#self.accounts = account_list
 		accounts_file = open("accounts.json", "r")
 		self.accounts = json.load(accounts_file)
+	
 
 	def create_new_account(self):
 		account = Bank_Account()
@@ -53,6 +55,25 @@ class Bank:
 				'account_balance' : account.value_deposit
 			}
 		)
+		# Свързване към базата на Атлас
+	def connect_to_atlas_cluster():
+			# connect using connection string:
+			# mongodb+srv://<username>:<password>@cluster0.xm0yw.mongodb.net/<dbname?>
+			connection_string = 'mongodb+srv://4gumicom:P1hIZlJpOjXSxcaK@cluster0.fzpcsb9.mongodb.net/'
+			return MongoClient(connection_string)
+	
+	# запис на целия списък от банкови сметки във MongoDB Atlas
+	def accounts_to_mongo_atlas(self) :
+		# connect to DB
+		bank_account = self.connect_to_atlas_cluster()
+
+		# Create 'BankAccounts'
+		db = bank_account.BankAccounts
+		db.BankAccounts.insert_many(self.accounts)
+
+		
+
+
 
 	# запис на целия списък от банкови сметки във json
 	def accounts_to_json(self) :
